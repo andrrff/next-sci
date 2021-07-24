@@ -18,6 +18,23 @@ async fn manual_hello() -> impl Responder {
     HttpResponse::Ok().body("Hey there!")
 }
 
+async fn process_scope() -> impl Responder
+{
+    "Hello World"
+}
+
+struct AppState
+{
+    app_name: String
+}
+
+#[get("/state")]
+async fn test_state(data: web::Data<AppState>) -> String
+{
+    let app_name = &data.app_name;
+    format!("Hello {} 🥰", app_name)
+}
+
 #[actix_web::main]
 async fn main() -> io::Result<()> {
     env::set_var("RUST_LOG", "actix_web=debug,actix_server=info");
@@ -25,6 +42,15 @@ async fn main() -> io::Result<()> {
 
     HttpServer::new(|| {
         App::new()
+            .data(
+                AppState{
+                    app_name: "André".to_string()
+                }
+            )
+            .service(test_state)
+            .service(web::scope("/app")
+                        .route("/hello", web::get().to(process_scope))
+                    )
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
