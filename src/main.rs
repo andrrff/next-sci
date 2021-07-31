@@ -1,33 +1,39 @@
-use actix_web::{web, App, HttpResponse, HttpServer};
+use actix_web::{get, web, App, Error, HttpResponse, HttpServer, Responder};
 
-fn test(cfg: &mut web::ServiceConfig) {
+// #[get("/")]
+async fn index() -> impl Responder
+{
+    "Ola mundo".to_owned()
+}
+
+fn config(cfg: &mut web::ServiceConfig)
+{
     cfg.service(
-        web::resource("/test")
-            .route(web::get().to(|| HttpResponse::Ok().body("Deu certo a rota `/test`")))
-            .route(web::head().to(|| HttpResponse::MethodNotAllowed())),
-        // web::scope("/scope")
-        //     .configure(test)
+        web::resource("/app")
+            .route(web::get().to(|| HttpResponse::Ok().body("/app")))
+            .route(web::head().to(|| HttpResponse::MethodNotAllowed()))
+    );
+
+    cfg.service(
+        web::resource("/api")
+            .route(web::get().to(|| HttpResponse::Ok().body("/api")))
     );
 }
 
 #[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| {
+async fn main() -> std::io::Result<()>
+{
+    HttpServer::new(|| 
+    {
         App::new()
-            .configure(test)
             .service(
-                web::scope("/api")
-                    .route("/", web::get().to(|| HttpResponse::Ok().body("/api")))
-                    .configure(test)
-                    .service(
-                        web::scope("/route")
-                            .route("/", web::get().to(|| HttpResponse::Ok().body("/route")))
-                            .configure(test),
-                    ),
+                web::scope("/")
+                    .configure(config)
+                    .route("/welcome", web::get().to(index))
             )
-            .route("/", web::get().to(|| HttpResponse::Ok().body("/")))
+            // .configure(f: F)
     })
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
+        .bind("127.0.0.1:8080")?
+        .run()
+        .await
 }
