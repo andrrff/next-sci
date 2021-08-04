@@ -1,15 +1,9 @@
 [package]
-name = "unknown-social"
+name = "index"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix-web = "3"
-actix-files = "0.3"
-actix-session = "0.4"
-actix-utils = "2"
-env_logger = "0.8"
-futures= "*"
-bacon-sci = "0.11.0"
+yew = "0.18.0"

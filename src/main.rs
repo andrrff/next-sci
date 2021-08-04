@@ -11,12 +11,6 @@ fn fresnel_C(t: f64, error: f64) -> Result<f64, String> {
     integrate(0.0, t, |x: f64| {x.powi(2) / (x.powi(2) - 5f64 * x + 6f64)}, error)
 }
 
-// #[get("math")]
-// async fn math() -> String
-// {
-//     "fresnel_C(5f64, 100000f64).unwrap().to_string()".to_owned()
-// }
-
 #[get("/math")]
 async fn math() -> impl Responder {
     HttpResponse::Ok().body(fresnel_C(5f64, 100000f64).unwrap().to_string())
@@ -25,10 +19,9 @@ async fn math() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // println!("{:?}", fresnel_C(5f64, 100000f64).unwrap());
     HttpServer::new(|| {
         App::new()
-            .service(fs::Files::new("/", "./static"))
+            .service(fs::Files::new("/", "./static/index/dist").index_file("index.html"))
             // .service(math)
     })
     .bind("127.0.0.1:8080")?
