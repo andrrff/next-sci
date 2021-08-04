@@ -8,8 +8,61 @@
 
 </head>
 <body>
-<canvas id="canvas"></canvas>
+<!-- <canvas id="canvas"></canvas> -->
+
+
+<!-- <h1>Traveling Wave</h1>
+<h2>Symbols</h2>
+<div class="ctr">
+  <div>\( A \) amplitude, also know as wave height</div>
+  <div>\( T = \frac{1}{f} \) period (in seconds)</div>
+  <div>\( f = \frac{1}{T} \) frequency (in Hertz)</div>
+  <div>\( v \) propagation velocity (in meters/second)</div>
+  <div>\( \lambda \) wavelength (in meters)</div>
+  <div>\( k \) wave number</div>
+  <div>\( \omega \) angular frequency</div>
+</div>
+<h2>Formulas</h2>
+Often you'll see the travelling wave formula look like this
+$$ y(x,t) = A \sin \frac{2\pi}{\lambda} (x \pm v t) $$
+But how you should see it is should be like this.
+$$ y(x,t) = A \sin \Big[ \frac{2\pi}{\lambda} (x \pm v t) \Big] $$
+It makes sense to do that, considering the variables you can plug in.
+$$\begin{align*}
+k = \frac{2\pi}{\lambda} && v = \lambda f = \frac{\lambda}{T}
+\end{align*}$$
+$$ \omega  = kv = \frac{2\pi v}{\lambda}  = 2\pi f = \frac{2 \pi}{T}$$
+Which can transform the formula to look like this.
+$$ y(x,t) = A \sin(kx \pm \omega t) $$
+Now let's look at derivatives. \(x\) and \(t\) are two separate derivatives, but in simple calculus, we look at \(x\) being dependent on \(t\), and is generally denoted \(x(t)\). \(y\) would be a function of \(x\), meaning \((y \circ x)(t) = y(x(t))\).
+
+$$ y(x,t) = y = A \sin(kx - \omega t) $$
+
+$$ y'(x,t) = \frac{dy}{dt} = \omega A \cos(kx - \omega t) $$
+
+$$ y''(x,t) = \frac{d^{2}y}{dt^{2}} = -\omega^{2} A \sin(kx - \omega t) = -\omega^{2}y $$
+
+As a plane wave we could express this travelling wave as either of these equations.
+
+$$ 
+\begin{align*}
+y = A \cos(kx - \omega t) && y = A \sin(kx - \omega t)
+\end{align*}
+$$
+
+In a complex formula let's have \( \theta = kx - \omega t \).
+
+$$ \begin{align*}
+y = y(x,t) &= A e^{i\theta} \\
+&= A (\cos \theta + i \sin \theta) \\
+&= A (\cos(kx - \omega t) + i \sin(kx - \omega t)) \\
+&= A\cos(kx - \omega t) + i A\sin(kx - \omega t)  \\
+&= A\cos \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big) + i A\sin \Big(\frac{2\pi}{\lambda}x - \frac{2\pi v}{\lambda} t \Big)  \\
+&= A\cos \frac{2\pi}{\lambda} (x - v t) + i A\sin \frac{2\pi}{\lambda} (x - v t)
+\end{align*}$$ -->
 
 </body>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="./script.js"></script>
 </html>
