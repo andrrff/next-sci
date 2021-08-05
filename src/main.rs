@@ -21,7 +21,7 @@ async fn math() -> impl Responder {
         <script src=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>
         <script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>
         $${}$$
-        $$Em fase de testes$$", fresnel_C(5f64, 100000f64).unwrap().to_string()))
+        <p>🚧Em fase de testes🚧</p>", fresnel_C(5f64, 100000f64).unwrap().to_string()))
 }
 
 
