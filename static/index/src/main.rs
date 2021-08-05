@@ -44,10 +44,20 @@ impl Component for Model {
                 <div class="input" id="input"></div>
                 <div class="buttons">
                     <div class="operators">
+                    <div>{"<"}</div>
+                    <div>{">"}</div>
+                    <div>{"π"}</div>
+                    <div>{"log"}</div>
+                    <div>{"∫"}</div>
+                    <div>{"^"}</div>
+                    <div>{"sin"}</div>
+                    <div>{"cos"}</div>
+                    </div>
+                    <div class="operators">
                     <div>{"+"}</div>
                     <div>{"-"}</div>
-                    <div>{"&times;"}</div>
-                    <div>{"&divide;"}</div>
+                    <div>{"×"}</div>
+                    <div>{"÷"}</div>
                     </div>
                     <div class="leftPanel">
                     <div class="numbers">
