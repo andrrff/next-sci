@@ -18,7 +18,7 @@ async fn math() -> impl Responder {
         .body(format!("
         <h1>Integration from server Actix</h1><br>
         $$\\i ntegration$$
-        $$\\int{{ x \over x^2 - 5x + 6}}dx$$
+        $$\\int{{ x \\over x^2 - 5x + 6}}dx$$
         <script src=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>
         <script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>
         {:?}", fresnel_C(5f64, 100000f64).unwrap().to_string()))
