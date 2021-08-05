@@ -1,2 +1,2 @@
-# unknown-social
-Unknown Social Network
+# Next SCI
+🚧Calculator scientific with gpu🚧
