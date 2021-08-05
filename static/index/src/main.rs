@@ -1,12 +1,14 @@
 use yew::prelude::*;
 
+mod bindings;
+
+use bindings::js_caller::calculator;
+
 enum Msg {
     AddOne,
 }
 
 struct Model {
-    // `ComponentLink` is like a reference to a component.
-    // It can be used to send messages to the component
     link: ComponentLink<Self>,
     value: i64,
 }
@@ -26,25 +28,51 @@ impl Component for Model {
         match msg {
             Msg::AddOne => {
                 self.value += 1;
-                // the value has changed so we need to
-                // re-render for it to appear on the page
                 true
             }
         }
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        // Should only return "true" if new properties are different to
-        // previously received properties.
-        // This component has no properties so we will always return "false".
         false
     }
 
     fn view(&self) -> Html {
+        calculator();
         html! {
-            <div>
-                <button onclick=self.link.callback(|_| Msg::AddOne)>{ "+1" }</button>
-                <p>{ self.value }</p>
+            <div class="calculator">
+                <div class="input" id="input"></div>
+                <div class="buttons">
+                    <div class="operators">
+                    <div>{"+"}</div>
+                    <div>{"-"}</div>
+                    <div>{"&times;"}</div>
+                    <div>{"&divide;"}</div>
+                    </div>
+                    <div class="leftPanel">
+                    <div class="numbers">
+                        <div>{"7"}</div>
+                        <div>{"8"}</div>
+                        <div>{"9"}</div>
+                    </div>
+                    <div class="numbers">
+                        <div>{"4"}</div>
+                        <div>{"5"}</div>
+                        <div>{"6"}</div>
+                    </div>
+                    <div class="numbers">
+                        <div>{"1"}</div>
+                        <div>{"2"}</div>
+                        <div>{"3"}</div>
+                    </div>
+                    <div class="numbers">
+                        <div>{"0"}</div>
+                        <div>{"."}</div>
+                        <div id="clear">{"C"}</div>
+                    </div>
+                    </div>
+                    <div class="equal" id="result">{"="}</div>
+                </div>
             </div>
         }
     }
